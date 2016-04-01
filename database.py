@@ -29,4 +29,4 @@ class database:
 
 "He afegit comentari per aveure si puc fer un sol comit d'ixo"
 if a==b:
-    print hola
+    print ""hola""
