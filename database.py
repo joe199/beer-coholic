@@ -21,7 +21,7 @@ class database:
         return self.clients[client]
 
 
-    def tank1(self, tank):
+    def tank(self, tank):
         self.tanki = tank
         tank = float(tank)-0.33
         tank = '%.2f' % (tank)
