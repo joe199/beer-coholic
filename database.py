@@ -26,7 +26,3 @@ class database:
         tank = float(tank)-0.33
         tank = '%.2f' % (tank)
         return tank
-
-"He afegit comentari per aveure si puc fer un sol comit d'ixo"
-if a==b:
-    print ""hola""
