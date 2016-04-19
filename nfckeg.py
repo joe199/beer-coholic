@@ -1,53 +1,66 @@
-import socket
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import threading
 import sys
-import os
 import subprocess
 import time
-import threading
-import database
 
-beer = 0
-tank = 0.99
-d = database.database()
+#import --- nom de les funcions--
+import actions as act
 
-class NFCKEG(threading.Thread):
+class NFCKEG(object):
+    """Class for NFCKEG """
+    def __init__(self):
+        super(NFCKEG, self).__init__()
+        #crear lo primordial
+        self.actions = []
+        self.actions.append(act.telegram)
+        self.actions.append(act.nfc)
 
-    def __init__(self, client):
-        threading.Thread.__init__(self)
-        self.client_sock, self.client_addr = client
-        
-    def run(self):
+        self.cl = CommandList() #sensor simulat en una llista
 
-        global beer
-        global tank
 
+    def entry(self):
+        #if entry is telegram:
+            #return telegram
+        #elseif is nfc:
+            #return nfc
+        #else:
+            #return None
+        try:
+            return self.cl.next()
+        except:
+            return (None)
+
+    def next_command(self, list1):
+        words = list1.split()
+        first_word = words[0]
+        rest_words = words[1:]
+        response = None
+        for entry in self.actions:
+            if entry.is_for_you(first_word):
+                response = entry.do(rest_words)
+        else:
+            print "command not found"
+        return response
+
+
+    def mainloop(self):
         while True:
+            entry = self.entry()
+            if entry:
+                response = self.next_command(entry)
+                chan.response(response)
 
-            #time.sleep(2)
-            value = self.client_sock.recv(1024)  
- 
-            if tank < 0.33:
-                    print 'Recharging the tank $$'
-                    value2 = 'Whait'
-                    self.client_sock.sendall(str(value2))
-                    time.sleep(2)
-                    tank = 1.65
-                    print 'Tank recharged!'
- 
-            print '\nState 1 of the tank is %s L.' % tank
-            tanki = tank
-            tank = float(d.tank(tank))
-            beer = tanki - tank
-            tdrinked = d.client(value, beer)
-            print 'State 2 of the tank is %s L.' % tank
-            value2 = tdrinked
-            self.client_sock.sendall(str(value2))
-                                                        
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('', 9999))
-sock.listen(3)
-print 'Waiting_for_drinkers_...'
+            #if entry is telegram:
+                #self.act.telegram
+            #elseif entry is nfc:
+                #self.act.nfc
 
-while True:
-    client = sock.accept()
-    NFCKEG(client).start()
+
+
+if __name__ == '__main__':
+    print "Starting drinking contest"
+    program = NFCKEG()
+    program.mainloop()
