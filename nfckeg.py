@@ -22,12 +22,6 @@ class NFCKEG(object):
 
 
     def entry(self):
-        #if entry is telegram:
-            #return telegram
-        #elseif is nfc:
-            #return nfc
-        #else:
-            #return None
         try:
             return self.cl.next()
         except:
