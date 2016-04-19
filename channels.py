@@ -9,7 +9,7 @@ class Channel(object):
         print "Response: ", response
 
 
-class TextChannel(channel):
+class TextChannel(Channel):
     """channel class, reads file channels"""
     def __init__(self, name = "TextChannel"):
         super(TextChannel, self).__init__()
