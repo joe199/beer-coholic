@@ -8,6 +8,9 @@ import time
 
 #import --- nom de les funcions--
 import actions as act
+import channels as ch
+
+
 
 class NFCKEG(object):
     """Class for NFCKEG """
@@ -19,6 +22,9 @@ class NFCKEG(object):
         self.actions.append(act.nfc)
 
         self.cl = CommandList() #sensor simulat en una llista
+
+        self.channels = []
+        self.channels.append(ch.TextChannel())
 
 
     def entry(self):
@@ -39,6 +45,10 @@ class NFCKEG(object):
             print "command not found"
         return response
 
+    def update_channels(self):
+            for chan in self.channels:
+                while chan.msg_avail():
+                    self.cl.append((chan, chan.get_msg()))
 
     def mainloop(self):
         while True:
@@ -46,6 +56,8 @@ class NFCKEG(object):
             if entry:
                 response = self.next_command(entry)
                 chan.response(response)
+            time.sleep(1)
+            self.update_channels()
 
             #if entry is telegram:
                 #self.act.telegram

@@ -1,0 +1,4 @@
+nfc 20 cl sant_miquel
+nfc 33 cl amstel
+telegram user
+telegram beer 
