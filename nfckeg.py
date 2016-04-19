@@ -7,6 +7,7 @@ import subprocess
 import time
 
 #import --- nom de les funcions--
+from commandlist import CommandList
 import actions as act
 import channels as ch
 
