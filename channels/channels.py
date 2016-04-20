@@ -26,3 +26,6 @@ class TextChannel(Channel):
 
     def msg_avail(self):
         return len(self.messages) > 0
+
+    def respond(self, response):
+        print "Response: ", response

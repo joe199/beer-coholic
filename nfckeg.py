@@ -8,13 +8,8 @@ import time
 
 #import --- nom de les funcions--
 from commandlist import CommandList
-
 from actions import actions as act
 from channels import channels as ch
-
-
-
-
 
 
 class NFCKEG(object):
@@ -47,21 +42,22 @@ class NFCKEG(object):
             if ha.is_for_you(first_word):
                 response = ha.do(rest_words)
         else:
-            print "command not found"
+            pass
+            #print "command not found" sempre entra, arreglar
         return response
 
     def update_channels(self):
-            for chan in self.channels:
-                while chan.msg_avail():
-                    self.cl.append((chan, chan.get_msg()))
+        for chan in self.channels:
+            while chan.msg_avail():
+                self.cl.append((chan, chan.get_msg()))
 
     def mainloop(self):
         while True:
             (chan, entry) = self.entry()
             if entry:
-                print entry, "valor de entry"
+                print entry
                 response = self.next_command(entry)
-                chan.response(response)
+                chan.respond(response)
             time.sleep(1)
             self.update_channels()
 
@@ -73,6 +69,6 @@ class NFCKEG(object):
 
 
 if __name__ == '__main__':
-    print "Starting drinking contest"
+    print "Starting drinking contest:\n"
     program = NFCKEG()
     program.mainloop()

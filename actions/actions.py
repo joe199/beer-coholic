@@ -6,8 +6,7 @@ class Action(object):
     def __init__(self):
         super(Action, self).__init__()
         #self.arg = arg
-        print "Actions executed"
-
+        
 class telegram(Action):
     """docstring for telegram"""
     def __init__(self):
@@ -20,8 +19,7 @@ class telegram(Action):
         return False
 
     def do(self, command):
-        print "telegram done"
-        return "DONE"
+        return "Telegram Done"
 
 
 class nfc(Action):
@@ -36,5 +34,4 @@ class nfc(Action):
         return False
 
     def do(self, command):
-        print "nfc done"
-        return "OK"
+        return "NFC Done"

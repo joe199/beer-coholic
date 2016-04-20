@@ -9,6 +9,7 @@ class CommandList(object):
     def next(self):
         return self.commands.pop(0)
 
+
     def append(self, command):
         self.commands.append(command)
 
