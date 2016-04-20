@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 class Channel(object):
     """Channel class"""
     def __init__(self, name):
