@@ -1,4 +1,3 @@
-
 class Channel(object):
     """Channel class"""
     def __init__(self, name):
@@ -12,7 +11,7 @@ class Channel(object):
 class TextChannel(Channel):
     """channel class, reads file channels"""
     def __init__(self, name = "TextChannel"):
-        super(TextChannel, self).__init__()
+        super(TextChannel, self).__init__(name)
         self.messages = []
         with open("prova_nfc.txt","r") as f:
             for line in f:

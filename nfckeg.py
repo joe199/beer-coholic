@@ -8,8 +8,13 @@ import time
 
 #import --- nom de les funcions--
 from commandlist import CommandList
+<<<<<<< HEAD
+from actions import actions as act
+from channels import channels as ch
+=======
 import actions as act
 import channels as ch
+>>>>>>> 7e8575c944480e0ec44656e87511cee38e1bd320
 
 
 
@@ -19,8 +24,8 @@ class NFCKEG(object):
         super(NFCKEG, self).__init__()
         #crear lo primordial
         self.actions = []
-        self.actions.append(act.telegram)
-        self.actions.append(act.nfc)
+        self.actions.append(act.telegram())
+        self.actions.append(act.nfc())
 
         self.cl = CommandList() #sensor simulat en una llista
 
@@ -32,16 +37,16 @@ class NFCKEG(object):
         try:
             return self.cl.next()
         except:
-            return (None)
+            return (None, None)
 
     def next_command(self, list1):
         words = list1.split()
         first_word = words[0]
         rest_words = words[1:]
         response = None
-        for entry in self.actions:
-            if entry.is_for_you(first_word):
-                response = entry.do(rest_words)
+        for ha in self.actions:
+            if ha.is_for_you(first_word):
+                response = ha.do(rest_words)
         else:
             print "command not found"
         return response
@@ -53,8 +58,9 @@ class NFCKEG(object):
 
     def mainloop(self):
         while True:
-            entry = self.entry()
+            (chan, entry) = self.entry()
             if entry:
+                print entry, "valor de entry"
                 response = self.next_command(entry)
                 chan.response(response)
             time.sleep(1)

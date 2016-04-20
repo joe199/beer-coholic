@@ -4,7 +4,7 @@
 class Action(object):
     """docstring for command"""
     def __init__(self):
-        super(command, self).__init__()
+        super(Action, self).__init__()
         #self.arg = arg
         print "Actions executed"
 
