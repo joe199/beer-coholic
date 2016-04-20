@@ -8,13 +8,13 @@ import time
 
 #import --- nom de les funcions--
 from commandlist import CommandList
-<<<<<<< HEAD
+
 from actions import actions as act
 from channels import channels as ch
-=======
+
 import actions as act
 import channels as ch
->>>>>>> 7e8575c944480e0ec44656e87511cee38e1bd320
+
 
 
 
