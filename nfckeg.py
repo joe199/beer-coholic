@@ -53,6 +53,7 @@ class NFCKEG(object):
         for chan in self.channels:
             while chan.msg_avail():
                 self.cl.append((chan, chan.get_msg()))
+                print chan, " ", chan.get_msg
 
     def mainloop(self):
         while True:

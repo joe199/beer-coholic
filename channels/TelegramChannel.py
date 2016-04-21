@@ -42,9 +42,11 @@ class TelegramChannel(Channel):
 
     def get_msg(self):
         if self.msg_avail():
+            print "adeu"
             return self.prova_nfc.pop(0)
 
     def msg_avail(self):
+        #print "hola"
         return len(self.prova_nfc) > 0
 
     def respond(self, response):
