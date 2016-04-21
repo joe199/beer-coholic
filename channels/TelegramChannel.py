@@ -20,6 +20,7 @@ class DuffmanBot(telepot.Bot):
         content_type, chat_type, chat_id = telepot.glance(msg)
         if content_type == 'text':
             command = msg['text']
+            print command
             if self.clist is not None:
                 self.clist.append(command)
                 self.chat_id = chat_id
@@ -37,7 +38,7 @@ class TelegramChannel(Channel):
         self.bot = DuffmanBot("202437938:AAGN93XJmHFRQvYrsKy0HBI-vulnqtHSeeo")
         self.prova_nfc= []
         self.bot.set_list(self.prova_nfc)
-        self.bot.notifyOnMessage()
+        #self.bot.notifyOnMessage()
 
     def get_msg(self):
         if self.msg_avail():

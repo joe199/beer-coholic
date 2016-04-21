@@ -9,7 +9,7 @@ import time
 #import --- nom de les funcions--
 from commandlist import CommandList
 from actions import actions as act
-from channels import channels as ch
+import channels as ch
 from database import database as db
 
 
@@ -25,7 +25,9 @@ class NFCKEG(object):
         self.cl = CommandList() #sensor simulat en una llista
 
         self.channels = []
+        self.channels.append(ch.TelegramChannel())
         self.channels.append(ch.TextChannel())
+
 
 
     def entry(self):
