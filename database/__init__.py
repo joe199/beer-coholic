@@ -1,4 +1,4 @@
-from database import database
-from  import
+from database import DataBase
 
-__all__ = ["database", ""]
+
+__all__ = ["database"]
