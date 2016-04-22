@@ -35,7 +35,7 @@ class TelegramChannel(Channel):
     """Channel class, received commands from telegram"""
     def __init__(self, name="TelegramChannel"):
         super(TelegramChannel, self).__init__(name)
-        self.bot = DuffmanBot("202437938:AAGN93XJmHFRQvYrsKy0HBI-vulnqtHSeeo")
+        self.bot = DuffmanBot("140959535:AAGhwVwbX2UAnDA8MlzwNYHuVkQYEH1coIg")
         self.prova_nfc= []
         self.bot.set_list(self.prova_nfc)
         self.bot.notifyOnMessage()
