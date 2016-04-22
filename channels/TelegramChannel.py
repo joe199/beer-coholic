@@ -38,7 +38,7 @@ class TelegramChannel(Channel):
         self.bot = DuffmanBot("202437938:AAGN93XJmHFRQvYrsKy0HBI-vulnqtHSeeo")
         self.prova_nfc= []
         self.bot.set_list(self.prova_nfc)
-        #self.bot.notifyOnMessage()
+        self.bot.notifyOnMessage()
 
     def get_msg(self):
         if self.msg_avail():
