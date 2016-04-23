@@ -31,6 +31,7 @@ class DataBase(object):
                 username = user[2]
                 self.add(name, tagid, username)
 
+        #Veure a l'inici del programa la base de dades inici
         a = self.cur.execute('select * from DataBase')
         data = [row for row in a]
         print "Initial database:"

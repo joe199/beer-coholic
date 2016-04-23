@@ -22,7 +22,6 @@ class NFCKEG(object):
         self.actions.append(act.telegram())
         self.actions.append(act.nfc())
 
-        self.users = []
         self.Datab = db.DataBase()
 
         self.cl = CommandList() #sensor simulat en una llista
@@ -40,14 +39,18 @@ class NFCKEG(object):
             return (None, None)
 
     def next_command(self, list1):
-        words = list1.split()
-        first_word = words[0]
-        rest_words = words[1:]
+        words = list1.split(",")
+        chanel = words[0]
+        try:
+            info1 = words[1]
+            info2 = words[2]
+        except:
+            pass
         response = "Command not found"
         for ha in self.actions:
-            if ha.is_for_you(first_word):
-                response = ha.do(rest_words)
-                
+            if ha.is_for_you(chanel):
+                response = ha.do(info1, info2)
+
         return response
 
     def update_channels(self):
