@@ -8,7 +8,7 @@ import time
 
 #import --- nom de les funcions--
 from commandlist import CommandList
-from actions import actions as act
+import actions as act
 import channels as ch
 from database import database as db
 
