@@ -12,4 +12,5 @@ class telegram(Action):
         return False
 
     def do(self, command):
+        print "Showing", " ".join(command), "from database"
         return "Telegram Done"

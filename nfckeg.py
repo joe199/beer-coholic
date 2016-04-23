@@ -10,7 +10,7 @@ import time
 from commandlist import CommandList
 import actions as act
 import channels as ch
-from database import database as db
+import database as db
 
 
 class NFCKEG(object):
@@ -21,6 +21,9 @@ class NFCKEG(object):
         self.actions = []
         self.actions.append(act.telegram())
         self.actions.append(act.nfc())
+
+        self.users = []
+        self.Datab = db.DataBase()
 
         self.cl = CommandList() #sensor simulat en una llista
 
@@ -40,13 +43,11 @@ class NFCKEG(object):
         words = list1.split()
         first_word = words[0]
         rest_words = words[1:]
-        response = None
+        response = "Command not found"
         for ha in self.actions:
             if ha.is_for_you(first_word):
                 response = ha.do(rest_words)
-        else:
-            pass
-            #print "command not found" sempre entra, arreglar
+                
         return response
 
     def update_channels(self):
@@ -55,11 +56,12 @@ class NFCKEG(object):
                 self.cl.append((chan, chan.get_msg()))
                 print chan, " ", chan.get_msg
 
+
     def mainloop(self):
         while True:
             (chan, entry) = self.entry()
             if entry:
-                print entry
+                print "\n*", entry
                 response = self.next_command(entry)
                 chan.respond(response)
             time.sleep(1)

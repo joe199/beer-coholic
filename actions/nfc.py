@@ -12,4 +12,5 @@ class nfc(Action):
         return False
 
     def do(self, command):
-        return "NFC Done"
+        print "Serving beer:", " ".join(command)
+        return "NFC DONE"
