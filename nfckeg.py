@@ -5,6 +5,7 @@ import threading
 import sys
 import subprocess
 import time
+import yaml
 
 #import --- nom de les funcions--
 from commandlist import CommandList
@@ -30,7 +31,11 @@ class NFCKEG(object):
         self.channels.append(ch.TelegramChannel())
         self.channels.append(ch.TextChannel())
 
-
+    def _get_config(self):
+        with open("config.yaml") as f:
+            self.cfg = yaml.load(f)
+        print "Configuració: "
+        print json.dumps(self.cfg, indent=4)
 
     def entry(self):
         try:
