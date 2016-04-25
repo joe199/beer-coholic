@@ -10,6 +10,7 @@ class Notify(object):
 
     def prova(self):
         pass
+        
         #print "La prova ha funcionat!"
         #return self.ch.TelegramChannel.get_msg()
 
