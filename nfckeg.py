@@ -19,6 +19,7 @@ class NFCKEG(object):
     def __init__(self):
         super(NFCKEG, self).__init__()
         #crear lo primordial
+        self._get_config()
         self.actions = []
         self.actions.append(act.telegram())
         self.actions.append(act.nfc())
@@ -28,14 +29,13 @@ class NFCKEG(object):
         self.cl = CommandList() #sensor simulat en una llista
 
         self.channels = []
-        self.channels.append(ch.TelegramChannel())
+        self.channels.append(ch.TelegramChannel(self.token))
         self.channels.append(ch.TextChannel())
 
     def _get_config(self):
-        with open("config.yaml") as f:
+        with open("configuration.yaml") as f:
             self.cfg = yaml.load(f)
-        print "Configuració: "
-        print json.dumps(self.cfg, indent=4)
+            self.token = self.cfg["beer-coholic"]["token"]
 
     def entry(self):
         try:

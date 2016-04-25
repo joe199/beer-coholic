@@ -33,9 +33,9 @@ class DuffmanBot(telepot.Bot):
 
 class TelegramChannel(Channel):
     """Channel class, received commands from telegram"""
-    def __init__(self, name="TelegramChannel"):
-        super(TelegramChannel, self).__init__(name)
-        self.bot = DuffmanBot("140959535:AAGhwVwbX2UAnDA8MlzwNYHuVkQYEH1coIg")
+    def __init__(self, token=None, name = "TelegramChannel"):
+        super(TelegramChannel, self).__init__(token)#he hagut de treure el name, peruq hem donava error
+        self.bot = DuffmanBot(token)
         self.prova_nfc= []
         self.bot.set_list(self.prova_nfc)
         self.bot.notifyOnMessage()
