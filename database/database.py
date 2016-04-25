@@ -45,6 +45,7 @@ class DataBase(object):
                          'VALUES (?, ?, ?)',
                          (name, tagid, username))
         self.db.commit()
+        self.db.close()
 
 
     def search(self, name):
