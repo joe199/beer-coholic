@@ -12,7 +12,8 @@ from commandlist import CommandList
 import actions as act
 import channels as ch
 import database as db
-
+import sensors as sn
+import notify as nt
 
 class NFCKEG(object):
     """Class for NFCKEG """
@@ -31,6 +32,13 @@ class NFCKEG(object):
         self.channels = []
         self.channels.append(ch.TelegramChannel(self.token))
         self.channels.append(ch.TextChannel())
+
+        self.sensors = []
+        self.sensors.append(sn.NfcSensor())
+        self.sensors.append(sn.FlowSensor())
+
+        self.notify = []
+        self.notify.append(nt.Notify())
 
     def _get_config(self):
         with open("configuration.yaml") as f:
@@ -64,6 +72,11 @@ class NFCKEG(object):
                 self.cl.append((chan, chan.get_msg()))
                 print chan, " ", chan.get_msg
 
+    def provacrida(self):
+        for noti in self.notify:
+            if noti.prova():
+                response = noti.prova()
+
 
     def mainloop(self):
         while True:
@@ -74,6 +87,7 @@ class NFCKEG(object):
                 chan.respond(response)
             time.sleep(1)
             self.update_channels()
+            self.provacrida()
 
             #if entry is telegram:
                 #self.act.telegram
