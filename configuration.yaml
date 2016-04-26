@@ -1,6 +1,6 @@
 beer-coholic:
   token: 140959535:AAGhwVwbX2UAnDA8MlzwNYHuVkQYEH1coIg
-  usuaris:
-    - Josep
-    - Jordi
-    - Joel
+usuaris:
+  Joel: 52CEXDE
+  Jordi: 54HJKLP
+  Josep: 58HKPIL

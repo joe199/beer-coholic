@@ -1,5 +1,5 @@
 from actions import Action
-#import database as db
+from database.database import DataBase as db
 
 class telegram(Action):
     """docstring for telegram"""
@@ -15,7 +15,7 @@ class telegram(Action):
 
 
     def do(self, column, idem):
-        #info = self.db.DataBase.search(idem)
+        info = db().search(column, idem)
         #No se com cridar la funcio database search desde aqui
-        print "searched info"
+        print "searched info:  ", info
         return "Telegram Done"

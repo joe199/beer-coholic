@@ -13,4 +13,5 @@ class nfc(Action):
 
     def do(self, amount, beer):
         print "Serving", amount,"of",beer
+        print "NFC Done"
         return "NFC DONE"

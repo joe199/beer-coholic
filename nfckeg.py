@@ -8,6 +8,7 @@ import time
 import yaml
 
 #import --- nom de les funcions--
+
 from commandlist import CommandList
 import actions as act
 import channels as ch
@@ -43,7 +44,10 @@ class NFCKEG(object):
     def _get_config(self):
         with open("configuration.yaml") as f:
             self.cfg = yaml.load(f)
+            print "Configuracio: "
+            print self.cfg
             self.token = self.cfg["beer-coholic"]["token"]
+
 
     def entry(self):
         try:
@@ -70,7 +74,7 @@ class NFCKEG(object):
         for chan in self.channels:
             while chan.msg_avail():
                 self.cl.append((chan, chan.get_msg()))
-                print chan, " ", chan.get_msg
+
 
     def provacrida(self):
         for noti in self.notify:
