@@ -58,6 +58,7 @@ class DataBase(object):
         print columna, fila
         info= self.db.execute("SELECT * from DataBase where username=:Id",
                 {"Id":  ' Joe_199' })
+        info = self.db.execute("select * from DataBase(id,username,tagid,name) where username = ?",(fila,))
 
         data = [row for row in info]
         print "hola database:"
