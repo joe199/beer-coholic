@@ -3,6 +3,7 @@
 
 class Action(object):
     """docstring for command"""
-    def __init__(self):
+    def __init__(self, database):
         super(Action, self).__init__()
         #self.arg = arg
+        self.database= database

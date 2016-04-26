@@ -20,16 +20,17 @@ class NFCKEG(object):
         super(NFCKEG, self).__init__()
         #crear lo primordial
         self._get_config()
-        self.actions = []
-        self.actions.append(act.telegram())
-        self.actions.append(act.nfc())
-
         self.Datab = db.DataBase()
+        self.actions = []
+        self.actions.append(act.telegram(self.Datab))
+        self.actions.append(act.nfc(self.Datab))
+
+
 
         self.cl = CommandList() #sensor simulat en una llista
 
         self.channels = []
-        self.channels.append(ch.TelegramChannel(self.token))
+        self.channels.append(ch.TelegramChannel(self.cfg))
         self.channels.append(ch.TextChannel())
 
         self.sensors = []
@@ -55,7 +56,8 @@ class NFCKEG(object):
             info1 = words[1]
             info2 = words[2]
         except:
-            pass
+            info1=None
+            info2=None
         response = "Command not found"
         for ha in self.actions:
             if ha.is_for_you(chanel):

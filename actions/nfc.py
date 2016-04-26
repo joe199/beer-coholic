@@ -2,8 +2,8 @@ from actions import Action
 
 class nfc(Action):
     """client beer updating"""
-    def __init__(self):
-        super(nfc, self).__init__()
+    def __init__(self, datab):
+        super(nfc, self).__init__(datab)
         self.consult = ["nfc"]
 
     def is_for_you(self, word):

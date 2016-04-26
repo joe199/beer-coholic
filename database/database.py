@@ -27,6 +27,7 @@ class DataBase(object):
         #add the initials values to the database
         with open("usuaris.txt","r") as f:
             for line in f:
+                line=line.strip()
                 user = line.split(",")
                 username = user[0]
                 tagid = user[1]
@@ -41,11 +42,6 @@ class DataBase(object):
             #pass
             print line
 
-
-
-
-
-
     def add(self, name, tagid, username):
         self.db.execute('INSERT INTO DataBase (name, tagid, username)' +
                          'VALUES (?, ?, ?)',
@@ -55,10 +51,10 @@ class DataBase(object):
 
 
     def search(self, columna, fila):
-        print columna, fila
+        print columna, ">%s<" % (fila)
         info= self.db.execute("SELECT * from DataBase where username=:Id",
-                {"Id":  ' Joe_199' })
-        info = self.db.execute("select * from DataBase(id,username,tagid,name) where username = ?",(fila,))
+                {"Id":  fila })
+        #info = self.db.execute("select * from DataBase(id,username,tagid,name) where username = ?",(fila,))
 
         data = [row for row in info]
         print "hola database:"

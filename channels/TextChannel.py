@@ -3,11 +3,12 @@ from channels import Channel
 
 class TextChannel(Channel):
     """channel class, reads file channels"""
-    def __init__(self, name = "TextChannel"):
-        super(TextChannel, self).__init__(name)
+    def __init__(self,cfg=None, name = "TextChannel"):
+        super(TextChannel, self).__init__(cfg, name)
         self.prova_nfc = []
         with open("prova_nfc.txt","r") as f:
             for line in f:
+                line=line.strip()
                 self.prova_nfc.append(line)
 
     def get_msg(self):
