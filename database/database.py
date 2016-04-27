@@ -51,13 +51,14 @@ class DataBase(object):
 
 
     def search(self, columna, fila):
-        print columna, ">%s<" % (fila)
+        print "Columna= ", "<%s>" % (columna), "Fila= ", ">%s<" % (fila)
         info= self.db.execute("SELECT * from DataBase where username=:Id",
                 {"Id":  fila })
-        #info = self.db.execute("select * from DataBase(id,username,tagid,name) where username = ?",(fila,))
+
+        #info = self.db.execute("SELECT * from DataBase (id,username,tagid,name) where username = ?",(fila,))
+        #info = self.db.execute("SELECT username, email from users where username=? and email=?" ,(username,email) )
 
         data = [row for row in info]
-        print "hola database:"
         for line in data:
             #pass
             print line
@@ -95,5 +96,5 @@ class DataBase(object):
         data = [row for row in a]
         print "Initial database:"
         for line in data:
-            #pass
-            print line
+            pass
+            #print line

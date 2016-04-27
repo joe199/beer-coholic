@@ -1,4 +1,2 @@
 nfc, 20 cl, Sant Miquel
 nfc, 33 cl, Amstel
-telegram,username,Joe_199
-telegram,username,Costar93
