@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy_declarative import User, Base
 import sqlite3
 
 class DataBase(object):
@@ -42,6 +45,7 @@ class DataBase(object):
             #pass
             print line
 
+
     def add(self, name, tagid, username):
         self.db.execute('INSERT INTO DataBase (name, tagid, username)' +
                          'VALUES (?, ?, ?)',
@@ -49,21 +53,31 @@ class DataBase(object):
         self.db.commit()
 
 
-
     def search(self, columna, fila):
-        print "Columna= ", "<%s>" % (columna), "Fila= ", ">%s<" % (fila)
-        info= self.db.execute("SELECT * from DataBase where %s=%s" %(columna, fila))
-                #{"username": columna, "Id":  fila })
+        #load session
+        # Create engine and bind base to it
+        path_to_db = "usuaris.db"
+        engine = create_engine('sqlite:///' + path_to_db)
+        Base.metadata.bind = engine
+        # Make a new session and return it
+        DBSession = sessionmaker(bind = engine)
+        session = DBSession()
+        #searching users
+        session.query(User).all()
 
-        #info = self.db.execute("SELECT * from DataBase (id,username,tagid,name) where username = ?",(fila,))
-        #info = self.db.execute("SELECT username, email from users where username=? and email=?" ,(username,email) )
+        if columna == "id":
+            user = session.query(User).filter_by(id=fila).all()
+        elif columna == "username":
+            user = session.query(User).filter_by(username=fila).all()
+        elif columna == "tagid":
+            user = session.query(User).filter_by(tagid=fila).all()
+        elif columna == "name":
+            user = session.query(User).filter_by(name=fila).all()
+        else:
+            user = "ERROR"
+        print user
 
-        data = [row for row in info]
-        for line in data:
-            #pass
-            print line
-
-        return data
+        return user
 
 
     def beer(self, name):
