@@ -52,8 +52,8 @@ class DataBase(object):
 
     def search(self, columna, fila):
         print "Columna= ", "<%s>" % (columna), "Fila= ", ">%s<" % (fila)
-        info= self.db.execute("SELECT * from DataBase where username=:Id",
-                {"Id":  fila })
+        info= self.db.execute("SELECT * from DataBase where %s=%s" %(columna, fila))
+                #{"username": columna, "Id":  fila })
 
         #info = self.db.execute("SELECT * from DataBase (id,username,tagid,name) where username = ?",(fila,))
         #info = self.db.execute("SELECT username, email from users where username=? and email=?" ,(username,email) )
