@@ -54,30 +54,25 @@ class DataBase(object):
 
 
     def search(self, columna, fila):
-        #load session
-        # Create engine and bind base to it
-        path_to_db = "usuaris.db"
-        engine = create_engine('sqlite:///' + path_to_db)
-        Base.metadata.bind = engine
-        # Make a new session and return it
-        DBSession = sessionmaker(bind = engine)
-        session = DBSession()
-        #searching users
-        session.query(User).all()
-
         if columna == "id":
-            user = session.query(User).filter_by(id=fila).all()
+            user =self.db.execute("SELECT * FROM DataBase where id=:Id",
+                                    {"Id":fila})
         elif columna == "username":
-            user = session.query(User).filter_by(username=fila).all()
+            user =self.db.execute("SELECT * FROM DataBase where username=:Id",
+                                    {"Id":fila})
         elif columna == "tagid":
-            user = session.query(User).filter_by(tagid=fila).all()
+            user =self.db.execute("SELECT * FROM DataBase where tagid=:Id",
+                                    {"Id":fila})
         elif columna == "name":
-            user = session.query(User).filter_by(name=fila).all()
+            user =self.db.execute("SELECT * FROM DataBase where name=:Id",
+                                    {"Id":fila})
         else:
             user = "ERROR"
-        print user
 
-        return user
+        data = [row for row in user]
+        print data
+
+        return data
 
 
     def beer(self, name):

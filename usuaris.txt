@@ -1,4 +1,4 @@
-Joe_199, 199, Josep Ortiz
-Costar93, 93, Jordi Costa
-Borraseta, 15, Josep Borras
-Godieta, 23, Joel Godia
+Joe_199,199,Josep Ortiz
+Costar93,93,Jordi Costa
+Borraseta,15,Josep Borras
+Godieta,23,Joel Godia
