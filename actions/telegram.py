@@ -16,14 +16,16 @@ class telegram(Action):
     def do(self, column, idem):
         info = self.database.search(column, idem)
         if info is not "ERROR":
-            print "retorn de search"
-            print info
-            for row in info:
-                src = (str(row[0]), str(row[1]), str(row[2]), str(row[3]))
-                #print src
-            src1= "id="+src[0]+" username="+src[1]+" tagid="+src[2]+" name="+src[3]
-            print src1
-
-            return src1
+            try:
+                print "retorn de search"
+                print info
+                for row in info:
+                    src = (str(row[0]), str(row[1]), str(row[2]), str(row[3]))
+                    #print src
+                src1= "id="+src[0]+" username="+src[1]+" tagid="+src[2]+" name="+src[3]
+                print src1
+                return src1
+            except:
+                return "Error d'entrada"
         else:
             return "ERROR loguing user"

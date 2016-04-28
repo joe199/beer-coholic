@@ -20,10 +20,14 @@ class DuffmanBot(telepot.Bot):
         content_type, chat_type, chat_id = telepot.glance(msg)
         if content_type == 'text':
             command = msg['text']
-            command = "telegram," + command#afegim que el canal es telegram
-            print command
+            command1=[]
+            command1= command.split(" ")
+            print "command=",command1
+            command2=command[0]+","+command[1]
+            command3 = "telegram," + command2#afegim que el canal es telegram
+            print command2
             if self.clist is not None:
-                self.clist.append(command)
+                self.clist.append(command3)
                 self.chat_id = chat_id
 
     def respond(self, response):
