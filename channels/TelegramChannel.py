@@ -20,15 +20,18 @@ class DuffmanBot(telepot.Bot):
         content_type, chat_type, chat_id = telepot.glance(msg)
         if content_type == 'text':
             command = msg['text']
-            command1=[]
-            command1= command.split(" ")
-            print "command=",command1
-            command2=command[0]+","+command[1]
-            command3 = "telegram," + command2#afegim que el canal es telegram
-            print command2
-            if self.clist is not None:
-                self.clist.append(command3)
-                self.chat_id = chat_id
+            a = command.split(" ")
+            if  a[0]=="id" or a[0]=="username" or a[0]=="tagid" or a[0]=="name":
+                comm = "telegram," + a[0] + ","+a[1] #afegim que el canal es telegram
+                print comm
+                if self.clist is not None:
+                    self.clist.append(comm)
+                    self.chat_id = chat_id
+            elif a[0]=="nfc":
+                print "a: ",a
+            else:
+                print "Ta puta mare"
+
 
     def respond(self, response):
         if self.chat_id is not None:
@@ -51,7 +54,6 @@ class TelegramChannel(Channel):
             return self.prova_nfc.pop(0)
 
     def msg_avail(self):
-
         return len(self.prova_nfc) > 0
 
     def respond(self, response):
