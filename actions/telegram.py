@@ -3,7 +3,7 @@ from actions import Action
 class telegram(Action):
     """docstring for telegram"""
     def __init__(self, datab):
-        super(telegram, self).__init__(datab)
+        super(telegram, self).__init__(datab, datac)
         self.consult = ["telegram"]
 
 

@@ -21,14 +21,20 @@ class DuffmanBot(telepot.Bot):
         if content_type == 'text':
             command = msg['text']
             a = command.split(" ")
+            print "a= ",a
+            #b = a[1:]
+            #print "b es : ",b
             if  a[0]=="id" or a[0]=="username" or a[0]=="tagid" or a[0]=="name":
-                comm = "telegram," + a[0] + ","+a[1] #afegim que el canal es telegram
-                print comm
+                comm = "telegram," + a[0] + "," + a[1] #afegim que el canal es telegram
+                print "command: ",comm
                 if self.clist is not None:
                     self.clist.append(comm)
                     self.chat_id = chat_id
             elif a[0]=="nfc":
                 print "a: ",a
+                comm = "nfc," + a[1] + "," + a[2] #afegim que el canal es telegram
+                print "command nfc= ",comm
+                self.clist.append(comm)
             else:
                 print "Ta puta mare"
 
